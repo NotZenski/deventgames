@@ -90,5 +90,13 @@ function renderFooter() {
     </div>`;
 }
 
+function cleanAddress() {
+  const path = location.pathname;
+  if (!path.endsWith(".html") || path.endsWith("/404.html")) return;
+  const clean = path.replace(/(index)?\.html$/, "") || "/";
+  history.replaceState(null, "", clean + location.search + location.hash);
+}
+
+cleanAddress();
 renderHeader();
 renderFooter();
