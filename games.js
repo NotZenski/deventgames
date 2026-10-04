@@ -4,8 +4,8 @@ const GAMES = [
     "title": "Lucky Block Troll Tower 🍀",
     "image": "/assets/games/76128254547104.png",
     "thumb": "/assets/games/small/76128254547104.jpg",
-    "plays": 80513828,
-    "playing": 165,
+    "plays": 80513887,
+    "playing": 169,
     "universeId": 8514466390,
     "link": "https://www.roblox.com/games/76128254547104/"
   },
@@ -13,8 +13,8 @@ const GAMES = [
     "title": "[X2] +1 Jump Keyboard Escape",
     "image": "/assets/games/92184831525884.png",
     "thumb": "/assets/games/small/92184831525884.jpg",
-    "plays": 28975318,
-    "playing": 32,
+    "plays": 28975342,
+    "playing": 31,
     "universeId": 9751740164,
     "link": "https://www.roblox.com/games/92184831525884/"
   },
@@ -22,8 +22,8 @@ const GAMES = [
     "title": "Hide Troll Tower",
     "image": "/assets/games/91023000544333.png",
     "thumb": "/assets/games/small/91023000544333.jpg",
-    "plays": 14905796,
-    "playing": 36,
+    "plays": 14905804,
+    "playing": 41,
     "universeId": 8487827163,
     "link": "https://www.roblox.com/games/91023000544333/"
   },
@@ -31,8 +31,8 @@ const GAMES = [
     "title": "Power Rangers Tycoon",
     "image": "/assets/games/15367424318.png",
     "thumb": "/assets/games/small/15367424318.jpg",
-    "plays": 7929625,
-    "playing": 26,
+    "plays": 7929633,
+    "playing": 22,
     "universeId": 5300826049,
     "link": "https://www.roblox.com/games/15367424318/"
   },
@@ -40,8 +40,8 @@ const GAMES = [
     "title": "Murder Sherif Tower",
     "image": "/assets/games/81397329495359.png",
     "thumb": "/assets/games/small/81397329495359.jpg",
-    "plays": 7732713,
-    "playing": 42,
+    "plays": 7732721,
+    "playing": 44,
     "universeId": 8603679461,
     "link": "https://www.roblox.com/games/81397329495359/"
   },
@@ -49,8 +49,8 @@ const GAMES = [
     "title": "Admin Abuse Tower [5 Robux]",
     "image": "/assets/games/116564894722401.png",
     "thumb": "/assets/games/small/116564894722401.jpg",
-    "plays": 4431878,
-    "playing": 1,
+    "plays": 4431879,
+    "playing": 0,
     "universeId": 8817845872,
     "link": "https://www.roblox.com/games/116564894722401/"
   },
@@ -58,7 +58,7 @@ const GAMES = [
     "title": "Aura Edit Phonk Tower 🎵",
     "image": "/assets/games/89025817054592.png",
     "thumb": "/assets/games/small/89025817054592.jpg",
-    "plays": 4229490,
+    "plays": 4229493,
     "playing": 8,
     "universeId": 9368467895,
     "link": "https://www.roblox.com/games/89025817054592/"
@@ -76,8 +76,8 @@ const GAMES = [
     "title": "Swing Obby for SCP!",
     "image": "/assets/games/72312037339529.png",
     "thumb": "/assets/games/small/72312037339529.jpg",
-    "plays": 1535840,
-    "playing": 13,
+    "plays": 1535844,
+    "playing": 9,
     "universeId": 9895567340,
     "link": "https://www.roblox.com/games/72312037339529/"
   },
@@ -91,20 +91,38 @@ const GAMES = [
     "link": "https://www.roblox.com/games/130204173735797/"
   },
   {
+    "title": "Castle Tycoon ⚔️",
+    "image": "/assets/games/114802308612879.png",
+    "thumb": "/assets/games/small/114802308612879.jpg",
+    "plays": 923375,
+    "playing": 0,
+    "universeId": 7150756840,
+    "link": "https://www.roblox.com/games/114802308612879/"
+  },
+  {
     "title": "Swing Obby for Anime Fruits!",
     "image": "/assets/games/103854049901851.png",
     "thumb": "/assets/games/small/103854049901851.jpg",
-    "plays": 683960,
+    "plays": 683971,
     "playing": 18,
     "universeId": 9867067642,
     "link": "https://www.roblox.com/games/103854049901851/"
   },
   {
+    "title": "Squid Game Tycoon 🦑",
+    "image": "/assets/games/84468626580296.png",
+    "thumb": "/assets/games/small/84468626580296.jpg",
+    "plays": 595447,
+    "playing": 0,
+    "universeId": 7090279964,
+    "link": "https://www.roblox.com/games/84468626580296/"
+  },
+  {
     "title": "+1 Jump Crunchy Wax Escape!",
     "image": "/assets/games/71098316308533.png",
     "thumb": "/assets/games/small/71098316308533.jpg",
-    "plays": 461466,
-    "playing": 1,
+    "plays": 461467,
+    "playing": 0,
     "universeId": 9582851977,
     "link": "https://www.roblox.com/games/71098316308533/"
   },
@@ -118,10 +136,19 @@ const GAMES = [
     "link": "https://www.roblox.com/games/74608327682047/"
   },
   {
+    "title": "Princess Tycoon",
+    "image": "/assets/games/16812323880.png",
+    "thumb": "/assets/games/small/16812323880.jpg",
+    "plays": 260517,
+    "playing": 0,
+    "universeId": 5777843186,
+    "link": "https://www.roblox.com/games/16812323880/"
+  },
+  {
     "title": "+1 Jump Keyboard Escape | Candy & Choc",
     "image": "/assets/games/100011138344202.png",
     "thumb": "/assets/games/small/100011138344202.jpg",
-    "plays": 253796,
+    "plays": 253798,
     "playing": 4,
     "universeId": 10750518495,
     "link": "https://www.roblox.com/games/100011138344202/"
@@ -157,7 +184,7 @@ const GAMES = [
     "title": "Kick a Lucky Block for Soccer Legends! 🐐",
     "image": "/assets/games/90135108746968.png",
     "thumb": "/assets/games/small/90135108746968.jpg",
-    "plays": 22429,
+    "plays": 22431,
     "playing": 6,
     "universeId": 10761621939,
     "link": "https://www.roblox.com/games/90135108746968/"
@@ -166,8 +193,8 @@ const GAMES = [
     "title": "+1 Sticky-hand Escape! 🖐️",
     "image": "/assets/games/125743413265622.png",
     "thumb": "/assets/games/small/125743413265622.jpg",
-    "plays": 3882,
-    "playing": 49,
+    "plays": 3910,
+    "playing": 40,
     "universeId": 10766818459,
     "link": "https://www.roblox.com/games/125743413265622/"
   }
