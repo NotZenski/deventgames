@@ -86,7 +86,7 @@ function renderFooter() {
     </div>
     <div class="footer-bottom">
       <p>&copy; ${new Date().getFullYear()} Devent Inc. All rights reserved.</p>
-      <p>Roblox is a trademark of Roblox Corporation. Devent Games is not affiliated with or endorsed by Roblox.</p>
+      <p>Roblox is a trademark of Roblox Corporation. Devent Games is not endorsed by Roblox.</p>
     </div>`;
 }
 
