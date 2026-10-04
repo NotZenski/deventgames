@@ -7,8 +7,8 @@ function formatCount(n) {
 
 function placeholderColor(title) {
   let hash = 0;
-  for (const ch of title) hash = (hash * 31 + ch.charCodeAt(0)) % 360;
-  return `linear-gradient(135deg, hsl(${hash}, 70%, 55%), hsl(${(hash + 60) % 360}, 70%, 40%))`;
+  for (const ch of title) hash = (hash * 31 + ch.charCodeAt(0)) % 30;
+  return `linear-gradient(45deg, hsl(${hash}, 100%, 50%), hsl(${hash + 25}, 100%, 50%))`;
 }
 
 function renderGames() {

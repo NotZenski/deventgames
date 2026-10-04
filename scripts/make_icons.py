@@ -8,7 +8,7 @@ import pathlib
 
 from PIL import Image, ImageDraw
 
-TILE_COLOR = (20, 20, 28, 255)
+TILE_COLOR = (20, 20, 20, 255)
 ASSETS = pathlib.Path(__file__).resolve().parent.parent / "assets"
 
 
