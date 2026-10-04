@@ -1,6 +1,6 @@
 // FormSubmit (formsubmit.co) alias that forwards contact form messages to our inbox.
 // Never put the real email address here: this file is public.
-const FORM_ALIAS = "";
+const FORM_ALIAS = "b3d99e31d7062b59e10abb33a99c02bc";
 // Submissions faster than this after page load are treated as bots.
 const MIN_FILL_MS = 3000;
 const formLoadedAt = Date.now();
