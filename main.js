@@ -1,6 +1,9 @@
-// Contact form messages are delivered to this address by FormSubmit (formsubmit.co).
-// The first message sent triggers a one-time activation email to this address.
-const CONTACT_EMAIL = "hello@deventgames.com";
+// FormSubmit (formsubmit.co) alias that forwards contact form messages to our inbox.
+// Never put the real email address here: this file is public.
+const FORM_ALIAS = "";
+// Submissions faster than this after page load are treated as bots.
+const MIN_FILL_MS = 3000;
+const formLoadedAt = Date.now();
 
 function formatCount(n) {
   if (n >= 1e9) return (n / 1e9).toFixed(1).replace(/\.0$/, "") + "B";
@@ -96,12 +99,19 @@ function setupContactForm() {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (form._honey.value) return;
+    const looksLikeBot = form._honey.value || Date.now() - formLoadedAt < MIN_FILL_MS;
+    if (looksLikeBot) {
+      form.reset();
+      status.className = "form-status ok";
+      status.textContent = "Thanks! Your message was sent. We'll get back to you soon.";
+      return;
+    }
     button.disabled = true;
     status.className = "form-status";
     status.textContent = "Sending...";
     try {
-      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+      if (!FORM_ALIAS) throw new Error("Contact form not configured");
+      const res = await fetch(`https://formsubmit.co/ajax/${FORM_ALIAS}`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
@@ -110,15 +120,18 @@ function setupContactForm() {
           over_13: "Yes",
           _subject: "New message from deventgames.com",
           _template: "table",
+          _captcha: "false",
+          _blacklist: "crypto, bitcoin, seo services, backlinks, casino, viagra, porn",
         }),
       });
-      if (!res.ok) throw new Error(res.statusText);
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) !== "true") throw new Error(data.message || res.statusText);
       form.reset();
       status.classList.add("ok");
       status.textContent = "Thanks! Your message was sent. We'll get back to you soon.";
     } catch {
       status.classList.add("error");
-      status.innerHTML = `Something went wrong. Please email us at <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.`;
+      status.textContent = "Something went wrong sending your message. Please try again later.";
     } finally {
       button.disabled = false;
     }
