@@ -1,31 +1,31 @@
 // Shared header and footer for every page. Edit links here once and they update site-wide.
 const NAV_LINKS = [
-  { href: "index.html", label: "Home", page: "home" },
-  { href: "games.html", label: "Games", page: "games" },
-  { href: "index.html#about", label: "About" },
-  { href: "index.html#contact", label: "Contact" },
+  { href: "/", label: "Home", page: "home" },
+  { href: "/games", label: "Games", page: "games" },
+  { href: "/#about", label: "About" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 const FOOTER_COLUMNS = [
   {
     title: "Games",
     links: [
-      { href: "index.html#games", label: "Top games" },
-      { href: "games.html", label: "All games" },
+      { href: "/#games", label: "Top games" },
+      { href: "/games", label: "All games" },
     ],
   },
   {
     title: "Company",
     links: [
-      { href: "index.html#about", label: "About us" },
-      { href: "index.html#contact", label: "Contact" },
+      { href: "/#about", label: "About us" },
+      { href: "/#contact", label: "Contact" },
     ],
   },
   {
     title: "Legal",
     links: [
-      { href: "privacy.html", label: "Privacy Policy" },
-      { href: "terms.html", label: "Terms of Service" },
+      { href: "/privacy", label: "Privacy Policy" },
+      { href: "/terms", label: "Terms of Service" },
     ],
   },
 ];
@@ -36,8 +36,8 @@ function renderHeader() {
   const current = document.body.dataset.page;
   el.className = "nav";
   el.innerHTML = `
-    <a class="brand" href="index.html">
-      <img class="logo-tile" src="assets/logo.png" alt="" width="40" height="40" />
+    <a class="brand" href="/">
+      <img class="logo-tile" src="/assets/logo.png" alt="" width="40" height="40" />
       <span>Devent</span>
     </a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
@@ -70,8 +70,8 @@ function renderFooter() {
   el.innerHTML = `
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="brand" href="index.html">
-          <img class="logo-tile" src="assets/logo.png" alt="" width="40" height="40" />
+        <a class="brand" href="/">
+          <img class="logo-tile" src="/assets/logo.png" alt="" width="40" height="40" />
           <span>Devent Games</span>
         </a>
         <p>We make games people can't stop playing.</p>

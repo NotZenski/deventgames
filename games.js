@@ -2,7 +2,7 @@
 const GAMES = [
   {
     "title": "Lucky Block Troll Tower 🍀",
-    "image": "assets/games/76128254547104.png",
+    "image": "/assets/games/76128254547104.png",
     "plays": 80512935,
     "playing": 165,
     "universeId": 8514466390,
@@ -10,7 +10,7 @@ const GAMES = [
   },
   {
     "title": "[X2] +1 Jump Keyboard Escape",
-    "image": "assets/games/92184831525884.png",
+    "image": "/assets/games/92184831525884.png",
     "plays": 28974966,
     "playing": 35,
     "universeId": 9751740164,
@@ -18,7 +18,7 @@ const GAMES = [
   },
   {
     "title": "Hide Troll Tower",
-    "image": "assets/games/91023000544333.png",
+    "image": "/assets/games/91023000544333.png",
     "plays": 14905565,
     "playing": 39,
     "universeId": 8487827163,
@@ -26,7 +26,7 @@ const GAMES = [
   },
   {
     "title": "Murder Sherif Tower",
-    "image": "assets/games/81397329495359.png",
+    "image": "/assets/games/81397329495359.png",
     "plays": 7732478,
     "playing": 43,
     "universeId": 8603679461,
@@ -34,7 +34,7 @@ const GAMES = [
   },
   {
     "title": "Admin Abuse Tower [5 Robux]",
-    "image": "assets/games/116564894722401.png",
+    "image": "/assets/games/116564894722401.png",
     "plays": 4431878,
     "playing": 0,
     "universeId": 8817845872,
@@ -42,7 +42,7 @@ const GAMES = [
   },
   {
     "title": "Aura Edit Phonk Tower 🎵",
-    "image": "assets/games/89025817054592.png",
+    "image": "/assets/games/89025817054592.png",
     "plays": 4229450,
     "playing": 6,
     "universeId": 9368467895,
@@ -50,7 +50,7 @@ const GAMES = [
   },
   {
     "title": "Escape Logs for Brainrots!",
-    "image": "assets/games/94966213601846.png",
+    "image": "/assets/games/94966213601846.png",
     "plays": 3953231,
     "playing": 1,
     "universeId": 9590506924,
@@ -58,7 +58,7 @@ const GAMES = [
   },
   {
     "title": "Swing Obby for SCP!",
-    "image": "assets/games/72312037339529.png",
+    "image": "/assets/games/72312037339529.png",
     "plays": 1535754,
     "playing": 11,
     "universeId": 9895567340,
@@ -66,7 +66,7 @@ const GAMES = [
   },
   {
     "title": "Lucky Blocks Tower",
-    "image": "assets/games/130204173735797.png",
+    "image": "/assets/games/130204173735797.png",
     "plays": 1049020,
     "playing": 0,
     "universeId": 9275108427,
@@ -74,7 +74,7 @@ const GAMES = [
   },
   {
     "title": "Swing Obby for Anime Fruits!",
-    "image": "assets/games/103854049901851.png",
+    "image": "/assets/games/103854049901851.png",
     "plays": 683871,
     "playing": 19,
     "universeId": 9867067642,
@@ -82,7 +82,7 @@ const GAMES = [
   },
   {
     "title": "+1 Jump Crunchy Wax Escape!",
-    "image": "assets/games/71098316308533.png",
+    "image": "/assets/games/71098316308533.png",
     "plays": 461462,
     "playing": 0,
     "universeId": 9582851977,
@@ -90,7 +90,7 @@ const GAMES = [
   },
   {
     "title": "Escape Tsunami For Capibara",
-    "image": "assets/games/74608327682047.png",
+    "image": "/assets/games/74608327682047.png",
     "plays": 347385,
     "playing": 1,
     "universeId": 9603527248,
@@ -98,7 +98,7 @@ const GAMES = [
   },
   {
     "title": "+1 Jump Keyboard Escape | Candy & Choc",
-    "image": "assets/games/100011138344202.png",
+    "image": "/assets/games/100011138344202.png",
     "plays": 253759,
     "playing": 2,
     "universeId": 10750518495,
@@ -106,7 +106,7 @@ const GAMES = [
   },
   {
     "title": "Swing Obby for Poppy Playtime!",
-    "image": "assets/games/131959679324388.png",
+    "image": "/assets/games/131959679324388.png",
     "plays": 79833,
     "playing": 0,
     "universeId": 9911275419,
@@ -114,7 +114,7 @@ const GAMES = [
   },
   {
     "title": "Escape Barrel for Brainrots",
-    "image": "assets/games/136153892412083.png",
+    "image": "/assets/games/136153892412083.png",
     "plays": 68007,
     "playing": 0,
     "universeId": 9591685628,
@@ -122,7 +122,7 @@ const GAMES = [
   },
   {
     "title": "Dodge 67 For Brainrots",
-    "image": "assets/games/73513083912887.png",
+    "image": "/assets/games/73513083912887.png",
     "plays": 45917,
     "playing": 0,
     "universeId": 9594019574,
@@ -130,7 +130,7 @@ const GAMES = [
   },
   {
     "title": "Kick a Lucky Block for Soccer Legends! 🐐",
-    "image": "assets/games/90135108746968.png",
+    "image": "/assets/games/90135108746968.png",
     "plays": 22325,
     "playing": 21,
     "universeId": 10761621939,
@@ -138,7 +138,7 @@ const GAMES = [
   },
   {
     "title": "+1 Sticky-hand Escape! 🖐️",
-    "image": "assets/games/125743413265622.png",
+    "image": "/assets/games/125743413265622.png",
     "plays": 3691,
     "playing": 24,
     "universeId": 10766818459,

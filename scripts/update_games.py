@@ -65,7 +65,7 @@ def main():
         image = ""
         if uid in icons:
             (ICON_DIR / f"{pid}.png").write_bytes(fetch(icons[uid]))
-            image = f"assets/games/{pid}.png"
+            image = f"/assets/games/{pid}.png"
         games.append({
             "title": g["name"],
             "image": image,
