@@ -27,6 +27,9 @@ PLACE_IDS = [
     73513083912887,
     136153892412083,
     131959679324388,
+    15367424318,
+    18507991230,
+    16958952795,
 ]
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -72,7 +75,10 @@ def main():
     THUMB_DIR.mkdir(parents=True, exist_ok=True)
     games = []
     for pid, uid in zip(PLACE_IDS, universe_ids):
-        g = details[uid]
+        g = details.get(uid)
+        if not g or not g.get("id"):
+            print(f"  skipped place {pid}: private or unavailable on Roblox")
+            continue
         image = thumb = ""
         if uid in icons:
             icon_path = ICON_DIR / f"{pid}.png"
