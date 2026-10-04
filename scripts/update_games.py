@@ -29,7 +29,7 @@ PLACE_IDS = [
     131959679324388,
     15367424318,
     18507991230,
-    16958952795,
+    110793160370418,
 ]
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
