@@ -181,7 +181,46 @@ function setupContactForm() {
   });
 }
 
+const WALL_ROWS = 6;
+
+function shuffled(list) {
+  const copy = [...list];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function renderHeroWall() {
+  const wall = document.getElementById("hero-wall");
+  if (!wall) return;
+  const thumbs = GAMES.map((g) => g.thumb || g.image).filter(Boolean);
+  if (!thumbs.length) return;
+  const slowdown = matchMedia("(prefers-reduced-motion: reduce)").matches ? 3 : 1;
+
+  for (let r = 0; r < WALL_ROWS; r++) {
+    const track = document.createElement("div");
+    track.className = r % 2 ? "wall-track reverse" : "wall-track";
+    const duration = (70 + Math.random() * 40) * slowdown;
+    track.style.animationDuration = `${duration}s`;
+    track.style.animationDelay = `-${Math.random() * duration}s`;
+
+    // Two identical copies so translating by -50% loops seamlessly.
+    const order = shuffled(thumbs);
+    [...order, ...order].forEach((src) => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "";
+      img.decoding = "async";
+      track.appendChild(img);
+    });
+    wall.appendChild(track);
+  }
+}
+
 if (typeof GAMES !== "undefined") {
+  renderHeroWall();
   renderGames();
   renderStats();
 }

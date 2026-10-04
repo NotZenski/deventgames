@@ -31,6 +31,8 @@ PLACE_IDS = [
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 ICON_DIR = ROOT / "assets" / "games"
+THUMB_DIR = ICON_DIR / "small"
+THUMB_PX = 200
 
 
 def fetch(url):
@@ -41,6 +43,15 @@ def fetch(url):
 
 def get_json(url):
     return json.loads(fetch(url))
+
+
+def make_thumb(src, dest):
+    """Small JPEG for the homepage background wall (uses macOS `sips`)."""
+    subprocess.run(
+        ["sips", "-s", "format", "jpeg", "-s", "formatOptions", "75", "-Z", str(THUMB_PX),
+         str(src), "--out", str(dest)],
+        check=True, capture_output=True,
+    )
 
 
 def main():
@@ -58,17 +69,21 @@ def main():
         if d["state"] == "Completed"
     }
 
-    ICON_DIR.mkdir(parents=True, exist_ok=True)
+    THUMB_DIR.mkdir(parents=True, exist_ok=True)
     games = []
     for pid, uid in zip(PLACE_IDS, universe_ids):
         g = details[uid]
-        image = ""
+        image = thumb = ""
         if uid in icons:
-            (ICON_DIR / f"{pid}.png").write_bytes(fetch(icons[uid]))
+            icon_path = ICON_DIR / f"{pid}.png"
+            icon_path.write_bytes(fetch(icons[uid]))
+            make_thumb(icon_path, THUMB_DIR / f"{pid}.jpg")
             image = f"/assets/games/{pid}.png"
+            thumb = f"/assets/games/small/{pid}.jpg"
         games.append({
             "title": g["name"],
             "image": image,
+            "thumb": thumb,
             "plays": g["visits"],
             "playing": g["playing"],
             "universeId": uid,

@@ -3,38 +3,43 @@ const GAMES = [
   {
     "title": "Lucky Block Troll Tower 🍀",
     "image": "/assets/games/76128254547104.png",
-    "plays": 80512935,
-    "playing": 165,
+    "thumb": "/assets/games/small/76128254547104.jpg",
+    "plays": 80513707,
+    "playing": 156,
     "universeId": 8514466390,
     "link": "https://www.roblox.com/games/76128254547104/"
   },
   {
     "title": "[X2] +1 Jump Keyboard Escape",
     "image": "/assets/games/92184831525884.png",
-    "plays": 28974966,
-    "playing": 35,
+    "thumb": "/assets/games/small/92184831525884.jpg",
+    "plays": 28975278,
+    "playing": 29,
     "universeId": 9751740164,
     "link": "https://www.roblox.com/games/92184831525884/"
   },
   {
     "title": "Hide Troll Tower",
     "image": "/assets/games/91023000544333.png",
-    "plays": 14905565,
-    "playing": 39,
+    "thumb": "/assets/games/small/91023000544333.jpg",
+    "plays": 14905769,
+    "playing": 35,
     "universeId": 8487827163,
     "link": "https://www.roblox.com/games/91023000544333/"
   },
   {
     "title": "Murder Sherif Tower",
     "image": "/assets/games/81397329495359.png",
-    "plays": 7732478,
-    "playing": 43,
+    "thumb": "/assets/games/small/81397329495359.jpg",
+    "plays": 7732683,
+    "playing": 33,
     "universeId": 8603679461,
     "link": "https://www.roblox.com/games/81397329495359/"
   },
   {
     "title": "Admin Abuse Tower [5 Robux]",
     "image": "/assets/games/116564894722401.png",
+    "thumb": "/assets/games/small/116564894722401.jpg",
     "plays": 4431878,
     "playing": 0,
     "universeId": 8817845872,
@@ -43,7 +48,8 @@ const GAMES = [
   {
     "title": "Aura Edit Phonk Tower 🎵",
     "image": "/assets/games/89025817054592.png",
-    "plays": 4229450,
+    "thumb": "/assets/games/small/89025817054592.jpg",
+    "plays": 4229483,
     "playing": 6,
     "universeId": 9368467895,
     "link": "https://www.roblox.com/games/89025817054592/"
@@ -51,22 +57,25 @@ const GAMES = [
   {
     "title": "Escape Logs for Brainrots!",
     "image": "/assets/games/94966213601846.png",
-    "plays": 3953231,
-    "playing": 1,
+    "thumb": "/assets/games/small/94966213601846.jpg",
+    "plays": 3953245,
+    "playing": 0,
     "universeId": 9590506924,
     "link": "https://www.roblox.com/games/94966213601846/"
   },
   {
     "title": "Swing Obby for SCP!",
     "image": "/assets/games/72312037339529.png",
-    "plays": 1535754,
-    "playing": 11,
+    "thumb": "/assets/games/small/72312037339529.jpg",
+    "plays": 1535824,
+    "playing": 13,
     "universeId": 9895567340,
     "link": "https://www.roblox.com/games/72312037339529/"
   },
   {
     "title": "Lucky Blocks Tower",
     "image": "/assets/games/130204173735797.png",
+    "thumb": "/assets/games/small/130204173735797.jpg",
     "plays": 1049020,
     "playing": 0,
     "universeId": 9275108427,
@@ -75,38 +84,43 @@ const GAMES = [
   {
     "title": "Swing Obby for Anime Fruits!",
     "image": "/assets/games/103854049901851.png",
-    "plays": 683871,
-    "playing": 19,
+    "thumb": "/assets/games/small/103854049901851.jpg",
+    "plays": 683945,
+    "playing": 22,
     "universeId": 9867067642,
     "link": "https://www.roblox.com/games/103854049901851/"
   },
   {
     "title": "+1 Jump Crunchy Wax Escape!",
     "image": "/assets/games/71098316308533.png",
-    "plays": 461462,
-    "playing": 0,
+    "thumb": "/assets/games/small/71098316308533.jpg",
+    "plays": 461465,
+    "playing": 2,
     "universeId": 9582851977,
     "link": "https://www.roblox.com/games/71098316308533/"
   },
   {
     "title": "Escape Tsunami For Capibara",
     "image": "/assets/games/74608327682047.png",
-    "plays": 347385,
-    "playing": 1,
+    "thumb": "/assets/games/small/74608327682047.jpg",
+    "plays": 347391,
+    "playing": 0,
     "universeId": 9603527248,
     "link": "https://www.roblox.com/games/74608327682047/"
   },
   {
     "title": "+1 Jump Keyboard Escape | Candy & Choc",
     "image": "/assets/games/100011138344202.png",
-    "plays": 253759,
-    "playing": 2,
+    "thumb": "/assets/games/small/100011138344202.jpg",
+    "plays": 253791,
+    "playing": 4,
     "universeId": 10750518495,
     "link": "https://www.roblox.com/games/100011138344202/"
   },
   {
     "title": "Swing Obby for Poppy Playtime!",
     "image": "/assets/games/131959679324388.png",
+    "thumb": "/assets/games/small/131959679324388.jpg",
     "plays": 79833,
     "playing": 0,
     "universeId": 9911275419,
@@ -115,6 +129,7 @@ const GAMES = [
   {
     "title": "Escape Barrel for Brainrots",
     "image": "/assets/games/136153892412083.png",
+    "thumb": "/assets/games/small/136153892412083.jpg",
     "plays": 68007,
     "playing": 0,
     "universeId": 9591685628,
@@ -123,6 +138,7 @@ const GAMES = [
   {
     "title": "Dodge 67 For Brainrots",
     "image": "/assets/games/73513083912887.png",
+    "thumb": "/assets/games/small/73513083912887.jpg",
     "plays": 45917,
     "playing": 0,
     "universeId": 9594019574,
@@ -131,16 +147,18 @@ const GAMES = [
   {
     "title": "Kick a Lucky Block for Soccer Legends! 🐐",
     "image": "/assets/games/90135108746968.png",
-    "plays": 22325,
-    "playing": 21,
+    "thumb": "/assets/games/small/90135108746968.jpg",
+    "plays": 22423,
+    "playing": 8,
     "universeId": 10761621939,
     "link": "https://www.roblox.com/games/90135108746968/"
   },
   {
     "title": "+1 Sticky-hand Escape! 🖐️",
     "image": "/assets/games/125743413265622.png",
-    "plays": 3691,
-    "playing": 24,
+    "thumb": "/assets/games/small/125743413265622.jpg",
+    "plays": 3839,
+    "playing": 35,
     "universeId": 10766818459,
     "link": "https://www.roblox.com/games/125743413265622/"
   }
