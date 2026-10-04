@@ -1,3 +1,7 @@
+// Contact form messages are delivered to this address by FormSubmit (formsubmit.co).
+// The first message sent triggers a one-time activation email to this address.
+const CONTACT_EMAIL = "hello@deventgames.com";
+
 function formatCount(n) {
   if (n >= 1e9) return (n / 1e9).toFixed(1).replace(/\.0$/, "") + "B";
   if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M";
@@ -13,9 +17,11 @@ function placeholderColor(title) {
 
 function renderGames() {
   const grid = document.getElementById("game-grid");
+  if (!grid) return;
+  const limit = Number(grid.dataset.limit) || GAMES.length;
   grid.innerHTML = "";
 
-  for (const game of GAMES) {
+  for (const game of GAMES.slice(0, limit)) {
     const card = document.createElement("article");
     card.className = "game-card";
 
@@ -61,6 +67,7 @@ function renderGames() {
 }
 
 function animateNumber(el, target, format) {
+  if (!el) return;
   const duration = 1200;
   const start = performance.now();
   function tick(now) {
@@ -72,27 +79,54 @@ function animateNumber(el, target, format) {
   requestAnimationFrame(tick);
 }
 
-function setupNav() {
-  const toggle = document.querySelector(".nav-toggle");
-  const links = document.querySelector(".nav-links");
-  toggle.addEventListener("click", () => {
-    const open = links.classList.toggle("open");
-    toggle.setAttribute("aria-expanded", open);
-  });
-  links.addEventListener("click", (e) => {
-    if (e.target.tagName === "A") {
-      links.classList.remove("open");
-      toggle.setAttribute("aria-expanded", "false");
+function renderStats() {
+  const released = GAMES.filter((g) => g.link).length;
+  const totalPlays = GAMES.reduce((sum, g) => sum + (g.plays || 0), 0);
+  animateNumber(document.getElementById("stat-games"), released, String);
+  animateNumber(document.getElementById("stat-plays"), totalPlays, (n) => formatCount(n) + "+");
+  const aboutPlays = document.getElementById("about-plays");
+  if (aboutPlays) aboutPlays.textContent = formatCount(totalPlays) + "+";
+}
+
+function setupContactForm() {
+  const form = document.getElementById("contact-form");
+  if (!form) return;
+  const status = form.querySelector(".form-status");
+  const button = form.querySelector("button");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (form._honey.value) return;
+    button.disabled = true;
+    status.className = "form-status";
+    status.textContent = "Sending...";
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          email: form.email.value,
+          message: form.message.value,
+          over_13: "Yes",
+          _subject: "New message from deventgames.com",
+          _template: "table",
+        }),
+      });
+      if (!res.ok) throw new Error(res.statusText);
+      form.reset();
+      status.classList.add("ok");
+      status.textContent = "Thanks! Your message was sent. We'll get back to you soon.";
+    } catch {
+      status.classList.add("error");
+      status.innerHTML = `Something went wrong. Please email us at <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.`;
+    } finally {
+      button.disabled = false;
     }
   });
 }
 
-renderGames();
-setupNav();
-
-const released = GAMES.filter((g) => g.link).length;
-const totalPlays = GAMES.reduce((sum, g) => sum + (g.plays || 0), 0);
-animateNumber(document.getElementById("stat-games"), released, String);
-animateNumber(document.getElementById("stat-plays"), totalPlays, (n) => formatCount(n) + "+");
-
-document.getElementById("year").textContent = new Date().getFullYear();
+if (typeof GAMES !== "undefined") {
+  renderGames();
+  renderStats();
+}
+setupContactForm();

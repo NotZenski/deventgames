@@ -12,23 +12,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <header class="nav">
-    <a class="brand" href="#top">
-      <img class="logo-tile" src="assets/logo.png" alt="" width="40" height="40" />
-      <span>Devent</span>
-    </a>
-    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="nav-links">
-      <a href="#games">Games</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<body data-page="home">
+  <header id="site-header"></header>
 
-  <main id="top">
+  <main>
     <section class="hero">
       <div class="hero-glow"></div>
       <div class="hero-card">
@@ -38,7 +25,7 @@
         </div>
         <p class="hero-tagline">We make games people can't stop playing.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#games">Explore our games</a>
+          <a class="btn btn-primary" href="games.html">Explore our games</a>
           <a class="btn btn-light" href="#contact">Talk to us</a>
         </div>
         <div class="hero-stats">
@@ -54,36 +41,74 @@
       </div>
     </section>
 
-    <section id="games" class="section">
-      <h2 class="section-title">Our Games</h2>
-      <p class="section-sub">Jump in and play</p>
-      <div id="game-grid" class="game-grid"></div>
+    <section id="games" class="section games-section">
+      <h2 class="section-title">Our Top Hits</h2>
+      <p class="section-sub">Here are some of our top games</p>
+      <div id="game-grid" class="game-grid" data-limit="3"></div>
+      <div class="section-actions">
+        <a class="btn btn-primary" href="games.html">View all games</a>
+      </div>
     </section>
 
     <section id="about" class="section">
       <h2 class="section-title">About Us</h2>
       <div class="panel">
         <p>
-          Devent Games is an independent game studio. We design, build, and run
-          games with a focus on fun, polish, and constant updates driven by our
-          players.
+          Devent Games is an independent game studio building experiences on Roblox.
+          Our games have been played <strong id="about-plays">millions of</strong> times,
+          and we keep them fresh with constant updates driven by our players.
         </p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature">
+          <span class="feature-icon">🎮</span>
+          <h3>Built for Fun</h3>
+          <p>Every game starts with a simple, satisfying loop that's easy to pick up and hard to put down.</p>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">⚡</span>
+          <h3>Constant Updates</h3>
+          <p>New content, events, and improvements ship regularly so there's always something new to play.</p>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">💬</span>
+          <h3>Community First</h3>
+          <p>We listen to our players and groups, and their feedback shapes what we build next.</p>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🛡️</span>
+          <h3>Fair &amp; Safe</h3>
+          <p>We follow Roblox's community standards and work to keep our games fair and welcoming.</p>
+        </div>
       </div>
     </section>
 
     <section id="contact" class="section">
       <h2 class="section-title">Let's Talk</h2>
       <p class="section-sub">Questions, partnerships, or feedback? Reach out.</p>
-      <div class="contact-actions">
-        <a class="btn btn-primary" href="mailto:hello@deventgames.com">hello@deventgames.com</a>
+      <div class="contact-wrap">
+        <form id="contact-form" class="contact-form">
+          <input type="email" name="email" placeholder="Email Address..." required />
+          <textarea name="message" rows="5" placeholder="Your message..." required></textarea>
+          <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" />
+          <label class="age-check">
+            <input type="checkbox" name="over_13" required />
+            <span>I confirm that I am over 13 years old</span>
+          </label>
+          <button type="submit" class="btn btn-primary">Send message</button>
+          <p class="form-status" role="status"></p>
+        </form>
+        <p class="contact-legal">
+          By filling out this form and submitting, you are agreeing to our
+          <a href="privacy.html">privacy policy</a>.
+        </p>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>&copy; <span id="year"></span> Devent Inc. All rights reserved.</p>
-  </footer>
+  <footer id="site-footer"></footer>
 
+  <script src="layout.js"></script>
   <script src="games.js"></script>
   <script src="main.js"></script>
 </body>
