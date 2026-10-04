@@ -6,9 +6,15 @@ const MIN_FILL_MS = 3000;
 const formLoadedAt = Date.now();
 
 function formatCount(n) {
-  if (n >= 1e9) return (n / 1e9).toFixed(1).replace(/\.0$/, "") + "B";
-  if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M";
-  if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, "") + "K";
+  const units = [[1e9, "B"], [1e6, "M"], [1e3, "K"]];
+  for (let i = 0; i < units.length; i++) {
+    const [size, suffix] = units[i];
+    if (n >= size * 0.99995) {
+      const value = Number((n / size).toFixed(1));
+      if (value >= 1000 && i > 0) return Number((n / units[i - 1][0]).toFixed(1)) + units[i - 1][1];
+      return value + suffix;
+    }
+  }
   return String(n);
 }
 
@@ -82,10 +88,47 @@ function animateNumber(el, target, format) {
   requestAnimationFrame(tick);
 }
 
+// Roblox's API blocks browser requests, so live counts go through the RoProxy mirror.
+const LIVE_STATS_URL = "https://games.roproxy.com/v1/games?universeIds=";
+const LIVE_REFRESH_MS = 60000;
+
+async function fetchActivePlayers() {
+  const ids = GAMES.map((g) => g.universeId).filter(Boolean);
+  let total = 0;
+  for (let i = 0; i < ids.length; i += 50) {
+    const res = await fetch(LIVE_STATS_URL + ids.slice(i, i + 50).join(","));
+    if (!res.ok) throw new Error(res.statusText);
+    const { data } = await res.json();
+    total += data.reduce((sum, g) => sum + (g.playing || 0), 0);
+  }
+  return total;
+}
+
+function setupActivePlayers() {
+  const el = document.getElementById("stat-playing");
+  if (!el) return;
+  const snapshot = GAMES.reduce((sum, g) => sum + (g.playing || 0), 0);
+  let shown = null;
+
+  async function refresh() {
+    let count = snapshot;
+    try {
+      count = await fetchActivePlayers();
+    } catch {
+      if (shown !== null) return;
+    }
+    if (shown === null) animateNumber(el, count, formatCount);
+    else el.textContent = formatCount(count);
+    shown = count;
+  }
+
+  refresh();
+  setInterval(refresh, LIVE_REFRESH_MS);
+}
+
 function renderStats() {
-  const released = GAMES.filter((g) => g.link).length;
   const totalPlays = GAMES.reduce((sum, g) => sum + (g.plays || 0), 0);
-  animateNumber(document.getElementById("stat-games"), released, String);
+  setupActivePlayers();
   animateNumber(document.getElementById("stat-plays"), totalPlays, (n) => formatCount(n) + "+");
   const aboutPlays = document.getElementById("about-plays");
   if (aboutPlays) aboutPlays.textContent = formatCount(totalPlays) + "+";

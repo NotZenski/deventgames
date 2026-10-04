@@ -27,7 +27,6 @@ PLACE_IDS = [
     73513083912887,
     136153892412083,
     131959679324388,
-    110294345256307,
 ]
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -71,6 +70,8 @@ def main():
             "title": g["name"],
             "image": image,
             "plays": g["visits"],
+            "playing": g["playing"],
+            "universeId": uid,
             "link": f"https://www.roblox.com/games/{pid}/",
         })
         print(f"{g['visits']:>12,}  {g['name']}")
