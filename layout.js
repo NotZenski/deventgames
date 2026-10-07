@@ -97,7 +97,7 @@ function renderFooter() {
     <div class="container footer__inner">
       <div>
         ${brandMarkup()}
-        <p class="footer__tag">We make games people can't stop playing.</p>
+        <p class="footer__tag">Worlds worth wandering.</p>
       </div>
       <nav class="footer__links" aria-label="Footer">
         ${FOOTER_LINKS.map(
