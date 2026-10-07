@@ -1,65 +1,84 @@
-// Shared header and footer for every page. Edit links here once and they update site-wide.
+// Shared header, footer and scroll effects for every page. Edit links here once and they update site-wide.
+document.documentElement.classList.add("js");
+
 const NAV_LINKS = [
-  { href: "/", label: "Home", page: "home" },
-  { href: "/games", label: "Games", page: "games" },
-  { href: "/#about", label: "About" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/#home", label: "Home", section: "home" },
+  { href: "/#about", label: "About", section: "about" },
+  { href: "/#games", label: "Games", section: "games", page: "games" },
+  { href: "/#contact", label: "Contact", section: "contact" },
 ];
 
-const FOOTER_COLUMNS = [
-  {
-    title: "Games",
-    links: [
-      { href: "/#games", label: "Top games" },
-      { href: "/games", label: "All games" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { href: "/#about", label: "About us" },
-      { href: "/#contact", label: "Contact" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { href: "/privacy", label: "Privacy Policy" },
-      { href: "/terms", label: "Terms of Service" },
-    ],
-  },
+const FOOTER_LINKS = [
+  { href: "/#home", label: "Home" },
+  { href: "/#about", label: "About" },
+  { href: "/#games", label: "Games" },
+  { href: "/#contact", label: "Contact" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
 ];
+
+const isHome = document.body.dataset.page === "home";
+
+function brandMarkup() {
+  return `
+    <a class="brand" href="/#home" aria-label="Devent Games home">
+      <img class="logo-tile" src="/assets/logo.png" alt="" width="36" height="36" />
+      <span>Devent</span>
+    </a>`;
+}
 
 function renderHeader() {
   const el = document.getElementById("site-header");
   if (!el) return;
-  const current = document.body.dataset.page;
-  el.className = "nav";
+  const page = document.body.dataset.page;
+  el.className = isHome ? "nav" : "nav is-solid";
   el.innerHTML = `
-    <a class="brand" href="/">
-      <img class="logo-tile" src="/assets/logo.png" alt="" width="40" height="40" />
-      <span>Devent</span>
-    </a>
-    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="nav-links">
-      ${NAV_LINKS.map(
-        (l) => `<a href="${l.href}"${l.page === current ? ' class="active"' : ""}>${l.label}</a>`
-      ).join("")}
-    </nav>`;
+    <div class="container nav__inner">
+      ${brandMarkup()}
+      <nav class="nav__links" id="nav-links" aria-label="Primary">
+        ${NAV_LINKS.map(
+          (l) => `<a href="${isHome ? "#" + l.section : l.href}" data-section="${l.section}"${
+            l.page === page ? ' class="is-active"' : ""
+          }>${l.label}</a>`
+        ).join("")}
+      </nav>
+      <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>`;
 
-  const toggle = el.querySelector(".nav-toggle");
-  const links = el.querySelector(".nav-links");
+  const toggle = el.querySelector(".nav__toggle");
+  const links = el.querySelector(".nav__links");
+  const close = () => {
+    links.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
   toggle.addEventListener("click", () => {
-    const open = links.classList.toggle("open");
+    const open = links.classList.toggle("is-open");
     toggle.setAttribute("aria-expanded", open);
   });
   links.addEventListener("click", (e) => {
-    if (e.target.tagName === "A") {
-      links.classList.remove("open");
-      toggle.setAttribute("aria-expanded", "false");
-    }
+    if (e.target.tagName === "A") close();
+  });
+
+  if (!isHome) return;
+  const onScroll = () => el.classList.toggle("is-scrolled", window.scrollY > 20);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  const navLinks = [...links.querySelectorAll("a")];
+  const spy = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        navLinks.forEach((a) => a.classList.toggle("is-active", a.dataset.section === entry.target.id));
+      }
+    },
+    { rootMargin: "-45% 0px -50% 0px" }
+  );
+  NAV_LINKS.forEach((l) => {
+    const section = document.getElementById(l.section);
+    if (section) spy.observe(section);
   });
 }
 
@@ -68,26 +87,40 @@ function renderFooter() {
   if (!el) return;
   el.className = "footer";
   el.innerHTML = `
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a class="brand" href="/">
-          <img class="logo-tile" src="/assets/logo.png" alt="" width="40" height="40" />
-          <span>Devent Games</span>
-        </a>
-        <p>We make games people can't stop playing.</p>
+    <div class="container footer__inner">
+      <div>
+        ${brandMarkup()}
+        <p class="footer__tag">We make games people can't stop playing.</p>
       </div>
-      ${FOOTER_COLUMNS.map(
-        (col) => `
-        <div class="footer-col">
-          <h4>${col.title}</h4>
-          ${col.links.map((l) => `<a href="${l.href}">${l.label}</a>`).join("")}
-        </div>`
-      ).join("")}
+      <nav class="footer__links" aria-label="Footer">
+        ${FOOTER_LINKS.map((l) => `<a href="${l.href}">${l.label}</a>`).join("")}
+      </nav>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; ${new Date().getFullYear()} Devent Inc. All rights reserved.</p>
-      <p>Roblox is a trademark of Roblox Corporation. Devent Games is not endorsed by Roblox.</p>
+    <div class="container footer__bottom">
+      <span>&copy; ${new Date().getFullYear()} Devent Inc. All rights reserved.</span>
+      <span>Roblox is a trademark of Roblox Corporation. Devent Games is not endorsed by Roblox.</span>
     </div>`;
+}
+
+const revealObserver =
+  "IntersectionObserver" in window
+    ? new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add("is-in");
+            revealObserver.unobserve(entry.target);
+          }
+        },
+        { rootMargin: "0px 0px -8% 0px" }
+      )
+    : null;
+
+function observeReveals(root = document) {
+  root.querySelectorAll(".reveal:not(.is-in)").forEach((el) => {
+    if (revealObserver) revealObserver.observe(el);
+    else el.classList.add("is-in");
+  });
 }
 
 function cleanAddress() {
@@ -100,3 +133,4 @@ function cleanAddress() {
 cleanAddress();
 renderHeader();
 renderFooter();
+observeReveals();
