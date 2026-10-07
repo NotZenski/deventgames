@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nomad Studios | Roblox Game Studio</title>
   <meta name="description" content="Nomad Studios is an independent Roblox studio making towers, obbies and tycoons played by millions." />
-  <meta name="theme-color" content="#0a0605" />
+  <meta name="theme-color" content="#0b0907" />
   <link rel="icon" type="image/png" href="/assets/favicon.png" />
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -29,7 +29,7 @@
           <h1 class="hero__title reveal-load" style="--d:0ms">We make games people <span class="grad">can't stop playing.</span></h1>
           <p class="hero__text reveal-load" style="--d:90ms">Nomad Studios is an independent Roblox studio making towers, obbies and tycoons played by millions.</p>
           <div class="hero__actions reveal-load" style="--d:180ms">
-            <a class="btn btn--primary" href="#games">Play our games <span class="arrow">→</span></a>
+            <a class="btn btn--primary" href="/games">Play our games <span class="arrow">→</span></a>
             <a class="btn btn--ghost" href="#contact">Get in touch</a>
           </div>
         </div>
@@ -100,16 +100,12 @@
       <div class="container">
         <div class="section__head section__head--row reveal">
           <div>
-            <span class="section__kicker">Our games</span>
-            <h2 class="section__title">Live on Roblox right now.</h2>
+            <span class="section__kicker">Top games</span>
+            <h2 class="section__title">Our most played games.</h2>
           </div>
-          <div class="segmented" id="sort" role="group" aria-label="Sort games">
-            <button type="button" data-sort="playing" class="is-active">Most playing</button>
-            <button type="button" data-sort="plays">Most visits</button>
-            <button type="button" data-sort="newest">Newest</button>
-          </div>
+          <a class="btn btn--ghost" href="/games">View all games <span class="arrow">→</span></a>
         </div>
-        <div class="games__grid" id="game-grid"></div>
+        <div class="games__grid" id="game-grid" data-sort="plays" data-limit="3"></div>
       </div>
     </section>
 

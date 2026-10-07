@@ -4,14 +4,14 @@ document.documentElement.classList.add("js");
 const NAV_LINKS = [
   { href: "/#home", label: "Home", section: "home" },
   { href: "/#about", label: "About", section: "about" },
-  { href: "/#games", label: "Games", section: "games", page: "games" },
+  { href: "/games", label: "Games", page: "games" },
   { href: "/#contact", label: "Contact", section: "contact" },
 ];
 
 const FOOTER_LINKS = [
   { href: "/#home", label: "Home" },
   { href: "/#about", label: "About" },
-  { href: "/#games", label: "Games" },
+  { href: "/games", label: "Games" },
   { href: "/#contact", label: "Contact" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
@@ -37,7 +37,7 @@ function renderHeader() {
       ${brandMarkup()}
       <nav class="nav__links" id="nav-links" aria-label="Primary">
         ${NAV_LINKS.map(
-          (l) => `<a href="${isHome ? "#" + l.section : l.href}" data-section="${l.section}"${
+          (l) => `<a href="${isHome && l.section ? "#" + l.section : l.href}"${l.section ? ` data-section="${l.section}"` : ""}${
             l.page === page ? ' class="is-active"' : ""
           }>${l.label}</a>`
         ).join("")}

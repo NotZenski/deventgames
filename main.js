@@ -124,7 +124,7 @@ function renderTeam() {
 }
 
 /* Games grid with sorting */
-let currentSort = "playing";
+let currentSort = document.getElementById("game-grid")?.dataset.sort || "playing";
 
 function sortedGames() {
   const list = [...GAMES];
@@ -159,7 +159,8 @@ function gameCard(g, i) {
 function renderGames() {
   const grid = document.getElementById("game-grid");
   if (!grid) return;
-  grid.innerHTML = sortedGames().map(gameCard).join("");
+  const limit = Number(grid.dataset.limit) || GAMES.length;
+  grid.innerHTML = sortedGames().slice(0, limit).map(gameCard).join("");
   observeReveals(grid);
 }
 
