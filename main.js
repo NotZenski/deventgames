@@ -8,6 +8,7 @@ const formLoadedAt = Date.now();
 // Roblox's API blocks browser requests, so live counts go through the RoProxy mirror.
 const LIVE_STATS_URL = "https://games.roproxy.com/v1/games?universeIds=";
 const LIVE_REFRESH_MS = 60000;
+const DISCORD_STATS_URL = `https://discord.com/api/v10/invites/${DISCORD_INVITE}?with_counts=true`;
 const WALL_ROWS = 6;
 
 const ICONS = {
@@ -252,6 +253,29 @@ function setupLiveStats() {
   setInterval(refresh, LIVE_REFRESH_MS);
 }
 
+/* Discord community card: member and online counts refresh every minute */
+function setupDiscord() {
+  const icon = document.getElementById("community-icon");
+  if (icon) icon.innerHTML = DISCORD_ICON;
+  const els = document.querySelectorAll("[data-discord]");
+  if (!els.length) return;
+  async function refresh() {
+    try {
+      const res = await fetch(DISCORD_STATS_URL);
+      if (!res.ok) return;
+      const data = await res.json();
+      const counts = { members: data.approximate_member_count, online: data.approximate_presence_count };
+      els.forEach((el) => {
+        const n = counts[el.dataset.discord];
+        if (n != null) setLive(el, fullCount(n));
+      });
+      document.querySelectorAll("[data-discord-stats]").forEach((el) => (el.hidden = false));
+    } catch {}
+  }
+  refresh();
+  setInterval(refresh, LIVE_REFRESH_MS);
+}
+
 function setupContactForm() {
   const form = document.getElementById("contact-form");
   if (!form) return;
@@ -307,4 +331,5 @@ if (typeof GAMES !== "undefined") {
   setupSort();
   setupLiveStats();
 }
+setupDiscord();
 setupContactForm();
