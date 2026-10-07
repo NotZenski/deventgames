@@ -134,13 +134,13 @@ function sortedGames() {
   return list;
 }
 
-function gameCard(g, i) {
+function gameCard(g, i, showPlaying = true) {
   const media = g.wide || g.image;
   return `
     <article class="game reveal" style="--d:${(i % 3) * 90}ms">
       <a class="game__media" href="${esc(g.link)}" target="_blank" rel="noopener" aria-label="Play ${esc(g.title)}">
         ${media ? `<img src="${esc(media)}" alt="" loading="lazy" decoding="async" />` : ""}
-        <span class="badge"><span class="live-dot" aria-hidden="true"></span><span data-live="playing" data-universe="${g.universeId}">${fullCount(g.playing)}</span> playing</span>
+        ${showPlaying ? `<span class="badge"><span class="live-dot" aria-hidden="true"></span><span data-live="playing" data-universe="${g.universeId}">${fullCount(g.playing)}</span> playing</span>` : ""}
       </a>
       <div class="game__body">
         <h3 class="game__title"><a href="${esc(g.link)}" target="_blank" rel="noopener">${esc(g.title)}</a></h3>
@@ -160,7 +160,8 @@ function renderGames() {
   const grid = document.getElementById("game-grid");
   if (!grid) return;
   const limit = Number(grid.dataset.limit) || GAMES.length;
-  grid.innerHTML = sortedGames().slice(0, limit).map(gameCard).join("");
+  const showPlaying = grid.dataset.playing !== "hide";
+  grid.innerHTML = sortedGames().slice(0, limit).map((g, i) => gameCard(g, i, showPlaying)).join("");
   observeReveals(grid);
 }
 
