@@ -263,7 +263,7 @@ function setupContactForm() {
           email: form.email.value,
           message: form.message.value,
           over_13: "Yes",
-          _subject: "New message from deventgames.com",
+          _subject: "New message from nomadstudios.gg",
           _template: "table",
           _captcha: "false",
           _blacklist: "crypto, bitcoin, seo services, backlinks, casino, viagra, porn",

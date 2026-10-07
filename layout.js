@@ -21,9 +21,9 @@ const isHome = document.body.dataset.page === "home";
 
 function brandMarkup() {
   return `
-    <a class="brand" href="/#home" aria-label="Devent Games home">
+    <a class="brand" href="/#home" aria-label="Nomad Studios home">
       <img class="logo-tile" src="/assets/logo.png" alt="" width="36" height="36" />
-      <span>Devent</span>
+      <span>Nomad Studios</span>
     </a>`;
 }
 
@@ -97,8 +97,8 @@ function renderFooter() {
       </nav>
     </div>
     <div class="container footer__bottom">
-      <span>&copy; ${new Date().getFullYear()} Devent Inc. All rights reserved.</span>
-      <span>Roblox is a trademark of Roblox Corporation. Devent Games is not endorsed by Roblox.</span>
+      <span>&copy; ${new Date().getFullYear()} Nomad Studios, a Devent company. All rights reserved.</span>
+      <span>Roblox is a trademark of Roblox Corporation. Nomad Studios is not endorsed by Roblox.</span>
     </div>`;
 }
 
