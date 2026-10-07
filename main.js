@@ -53,6 +53,7 @@ function renderGames() {
     const plays = document.createElement("div");
     plays.className = "plays";
     plays.innerHTML = `<span class="play-icon">&#9654;</span><b>${formatCount(game.plays)}</b> plays`;
+    if (game.universeId) plays.querySelector("b").dataset.universe = game.universeId;
 
     card.append(thumb, title, plays);
 
@@ -92,34 +93,55 @@ function animateNumber(el, target, format) {
 const LIVE_STATS_URL = "https://games.roproxy.com/v1/games?universeIds=";
 const LIVE_REFRESH_MS = 60000;
 
-async function fetchActivePlayers() {
-  const ids = GAMES.map((g) => g.universeId).filter(Boolean);
-  let total = 0;
+// Updates GAMES in place with the latest visits and active players.
+async function fetchLiveStats() {
+  const byId = new Map(GAMES.filter((g) => g.universeId).map((g) => [g.universeId, g]));
+  const ids = [...byId.keys()];
   for (let i = 0; i < ids.length; i += 50) {
     const res = await fetch(LIVE_STATS_URL + ids.slice(i, i + 50).join(","));
     if (!res.ok) throw new Error(res.statusText);
     const { data } = await res.json();
-    total += data.reduce((sum, g) => sum + (g.playing || 0), 0);
+    for (const live of data) {
+      const game = byId.get(live.id);
+      if (!game) continue;
+      if (live.visits) game.plays = live.visits;
+      game.playing = live.playing || 0;
+    }
   }
-  return total;
 }
 
-function setupActivePlayers() {
-  const el = document.getElementById("stat-playing");
-  if (!el) return;
-  const snapshot = GAMES.reduce((sum, g) => sum + (g.playing || 0), 0);
-  let shown = null;
+function setupLiveStats() {
+  const playingEl = document.getElementById("stat-playing");
+  const playsEl = document.getElementById("stat-plays");
+  const aboutPlays = document.getElementById("about-plays");
+  const playsText = (n) => formatCount(n) + "+";
+  let firstRender = true;
+
+  function show() {
+    const playing = GAMES.reduce((sum, g) => sum + (g.playing || 0), 0);
+    const plays = GAMES.reduce((sum, g) => sum + (g.plays || 0), 0);
+    if (firstRender) {
+      animateNumber(playingEl, playing, formatCount);
+      animateNumber(playsEl, plays, playsText);
+    } else {
+      if (playingEl) playingEl.textContent = formatCount(playing);
+      if (playsEl) playsEl.textContent = playsText(plays);
+    }
+    if (aboutPlays) aboutPlays.textContent = playsText(plays);
+    document.querySelectorAll(".plays b[data-universe]").forEach((b) => {
+      const game = GAMES.find((g) => String(g.universeId) === b.dataset.universe);
+      if (game) b.textContent = formatCount(game.plays);
+    });
+    firstRender = false;
+  }
 
   async function refresh() {
-    let count = snapshot;
     try {
-      count = await fetchActivePlayers();
+      await fetchLiveStats();
     } catch {
-      if (shown !== null) return;
+      if (!firstRender) return;
     }
-    if (shown === null) animateNumber(el, count, formatCount);
-    else el.textContent = formatCount(count);
-    shown = count;
+    show();
   }
 
   refresh();
@@ -127,11 +149,7 @@ function setupActivePlayers() {
 }
 
 function renderStats() {
-  const totalPlays = GAMES.reduce((sum, g) => sum + (g.plays || 0), 0);
-  setupActivePlayers();
-  animateNumber(document.getElementById("stat-plays"), totalPlays, (n) => formatCount(n) + "+");
-  const aboutPlays = document.getElementById("about-plays");
-  if (aboutPlays) aboutPlays.textContent = formatCount(totalPlays) + "+";
+  setupLiveStats();
 }
 
 function setupContactForm() {
