@@ -137,7 +137,7 @@ function sortedGames() {
 function gameCard(g, i, showPlaying = true) {
   const media = g.wide || g.image;
   return `
-    <article class="game reveal" style="--d:${(i % 3) * 90}ms">
+    <article class="game reveal" style="--d:${(i % 3) * 90}ms" data-id="${g.universeId}">
       <a class="game__media" href="${esc(g.link)}" target="_blank" rel="noopener" aria-label="Play ${esc(g.title)}">
         ${media ? `<img src="${esc(media)}" alt="" loading="lazy" decoding="async" />` : ""}
         ${showPlaying ? `<span class="badge"><span class="live-dot" aria-hidden="true"></span><span data-live="playing" data-universe="${g.universeId}">${fullCount(g.playing)}</span> playing</span>` : ""}
@@ -161,7 +161,20 @@ function renderGames() {
   if (!grid) return;
   const limit = Number(grid.dataset.limit) || GAMES.length;
   const showPlaying = grid.dataset.playing !== "hide";
-  grid.innerHTML = sortedGames().slice(0, limit).map((g, i) => gameCard(g, i, showPlaying)).join("");
+  const list = sortedGames().slice(0, limit);
+  const order = list.map((g) => g.universeId).join(",");
+  if (grid.dataset.order === order) return;
+  const isUpdate = Boolean(grid.dataset.order);
+  grid.dataset.order = order;
+
+  // Same games in a new order: move the existing cards so nothing flickers or re-animates.
+  const cards = new Map([...grid.children].map((el) => [el.dataset.id, el]));
+  if (isUpdate && list.every((g) => cards.has(String(g.universeId)))) {
+    grid.append(...list.map((g) => cards.get(String(g.universeId))));
+    return;
+  }
+  grid.innerHTML = list.map((g, i) => gameCard(g, i, showPlaying)).join("");
+  if (isUpdate) grid.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-in"));
   observeReveals(grid);
 }
 
@@ -214,6 +227,7 @@ function setupLiveStats() {
       else setLive(statEls[key], formats[key](totals[key]));
     }
     if (aboutPlays) aboutPlays.textContent = plus(totals.plays);
+    renderGames();
 
     const byId = new Map(GAMES.map((g) => [String(g.universeId), g]));
     document.querySelectorAll("[data-live][data-universe]").forEach((el) => {
