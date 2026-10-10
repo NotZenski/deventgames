@@ -139,7 +139,32 @@ function cleanAddress() {
   history.replaceState(null, "", clean + location.search + location.hash);
 }
 
+// Refresh always starts at the top; in-page links scroll without leaving a #hash behind.
+function setupScrollPosition() {
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    const target = link && document.getElementById(link.getAttribute("href").slice(1));
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  const target = location.hash && document.getElementById(location.hash.slice(1));
+  if (!target) {
+    window.scrollTo(0, 0);
+    return;
+  }
+  // Content above the target is rendered by script, so re-align once everything has loaded.
+  window.addEventListener("load", () => {
+    target.scrollIntoView({ behavior: "instant", block: "start" });
+    history.replaceState(null, "", location.pathname + location.search);
+  });
+}
+
 cleanAddress();
+setupScrollPosition();
 renderHeader();
 renderFooter();
 observeReveals();
