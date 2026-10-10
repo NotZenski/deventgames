@@ -28,7 +28,7 @@ const isHome = document.body.dataset.page === "home";
 function brandMarkup() {
   return `
     <a class="brand" href="/#home" aria-label="Nomad Studios home">
-      <img class="logo-tile" src="/assets/logo.png" alt="" width="36" height="36" />
+      <img class="logo-tile" src="/assets/logo.png" alt="" width="40" height="40" />
       <span>Nomad Studios</span>
     </a>`;
 }

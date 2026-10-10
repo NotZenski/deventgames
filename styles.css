@@ -46,7 +46,7 @@ p { margin: 0; }
 @media (max-width: 640px) { .container { width: min(1180px, 100% - 32px); } }
 
 .ico { width: 18px; height: 18px; fill: currentColor; flex: none; }
-.logo-tile { background: #000; border: 1px solid #2e2820; border-radius: 22%; }
+.logo-tile { object-fit: contain; }
 
 /* Buttons */
 .btn {
@@ -250,7 +250,7 @@ p { margin: 0; }
 /* Contact */
 .contact { position: relative; text-align: center; padding: 72px 28px; border-radius: 30px; background: var(--surface); border: 1px solid var(--border); overflow: hidden; isolation: isolate; }
 .contact__glow { position: absolute; inset: -40% -20%; z-index: -1; background: radial-gradient(60% 60% at 50% 100%, rgba(184, 145, 106, 0.32), transparent 65%), radial-gradient(40% 40% at 80% 0%, rgba(241, 227, 207, 0.16), transparent 60%); pointer-events: none; }
-.contact__logo { width: 72px; height: 72px; margin: 0 auto 22px; box-shadow: 0 10px 34px rgba(201, 164, 120, 0.25); }
+.contact__logo { width: 88px; height: 88px; margin: 0 auto 22px; filter: drop-shadow(0 8px 24px rgba(201, 164, 120, 0.3)); }
 .contact .section__text { margin-inline: auto; }
 
 /* Discord community card */
