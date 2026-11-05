@@ -145,11 +145,11 @@ function gameCard(g, i, showPlaying = true) {
       </a>
       <div class="game__body">
         <h3 class="game__title"><a href="${esc(g.link)}" target="_blank" rel="noopener">${esc(g.title)}</a></h3>
-        <div class="game__meta">
-          <span title="${fullCount(g.plays)} visits">${ICONS.eye}<b data-live="plays" data-universe="${g.universeId}">${formatCount(g.plays)}</b> visits</span>
-          <span title="${fullCount(g.favorites)} favorites">${ICONS.star}<b data-live="favorites" data-universe="${g.universeId}">${formatCount(g.favorites || 0)}</b> favorites</span>
-        </div>
         <div class="game__footer">
+          <div class="game__meta">
+            <span title="${fullCount(g.plays)} visits" aria-label="visits">${ICONS.eye}<b data-live="plays" data-universe="${g.universeId}">${formatCount(g.plays)}</b></span>
+            <span title="${fullCount(g.favorites)} favorites" aria-label="favorites">${ICONS.star}<b data-live="favorites" data-universe="${g.universeId}">${formatCount(g.favorites || 0)}</b></span>
+          </div>
           <a class="game__play" href="${esc(g.link)}" target="_blank" rel="noopener">${ICONS.play} Play</a>
         </div>
       </div>
